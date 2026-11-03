@@ -1,0 +1,32 @@
+SEPTUAGINT (LXX) READER: SOURCES AND LICENSES
+
+GREEK TEXT
+Henry Barclay Swete, The Old Testament in Greek according to the Septuagint (Cambridge University Press, 1909-1930). Public domain.
+Digital transcription:
+  - LXX-Swete-1930 by Pasquale Amicarelli, published by Eliran Wong. GPL-3.0.
+    https://github.com/eliranwong/LXX-Swete-1930
+  - Corrected and merged text from "septuagint-swete" by See The Bible (chadmonahan). GPL-3.0.
+    https://github.com/chadmonahan/septuagint-swete
+Because the Greek data derives from GPL-3.0 sources, the data files in /data are distributed under GPL-3.0 (LICENSE-GPL3.txt).
+
+ENGLISH TRANSLATION
+Sir Lancelot C. L. Brenton, The Septuagint Version of the Old Testament (1851). Public domain.
+Digital text via eBible.org, as packaged in https://github.com/ctatum20/brenton-septuagint-data. Page headers and footnotes were removed.
+
+VERIFICATION AND CORRECTIONS
+The Greek text was cross-checked against the Open Greek and Latin Project's First1KGreek edition of Swete (CC BY-SA 4.0), https://github.com/OpenGreekAndLatin/First1KGreek . Where it showed a clear typo, the corrected spelling was taken from it or fixed by hand. All 115 changes are listed in corrections-log.csv.
+
+WORD DATA (tap a word)
+  - Lemmas: Open Scriptures Septuagint Project, LxxLemmas and GreekWordList (CC BY 4.0). Credit: the Open Scriptures Septuagint Project.
+    https://github.com/openscriptures/GreekResources
+  - Meanings: STEPBible lexicons by Tyndale House Cambridge (CC BY 4.0), https://github.com/STEPBible/STEPBible-Data
+      TBESG: brief lexicon of extended Strong's numbers for Greek, built on G. Abbott-Smith's Manual Greek Lexicon of the New Testament (public domain).
+      TFLSJ: Bible-focused edition of Liddell-Scott-Jones, from the Perseus Digital Library (CC BY-SA 4.0).
+    Definitions were shortened and cleaned for display. Material derived from LSJ remains under CC BY-SA 4.0.
+How the matching was made: the Open Scriptures lemmas follow Rahlfs' edition, not Swete's. Each Swete word was matched to a lemma by aligning the two texts verse by verse, with a correction pass using the most common lemma for each spelling. No openly licensed per-word tagging of Swete's own text exists. The result is automatic, so an occasional word may be matched to the wrong dictionary entry.
+
+FONT
+Cardo by David J. Perry, SIL Open Font License 1.1. https://fonts.google.com/specimen/Cardo
+
+VERSE NUMBERING
+Verses follow Swete's numbering, which is the Greek numbering (for example, the Psalms are numbered as in the Greek Psalter). Brenton's English is matched to the same references.

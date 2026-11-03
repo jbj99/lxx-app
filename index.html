@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en" data-theme="classic">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Septuagint (LXX)</title>
+<meta name="theme-color" content="#F2F4F0">
+<meta name="description" content="Offline Greek Septuagint reader with Brenton's English translation and word-by-word lexicon.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <button id="refBtn" class="ref" aria-haspopup="dialog" aria-label="Choose book and chapter">
+    <span class="ref-book" id="refBook">Genesis</span>
+    <span class="ref-ch" id="refCh">1</span>
+    <svg class="chev" viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M5 8l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="top-actions">
+    <button id="enBtn" class="en-switch" role="switch" aria-checked="true" aria-label="Show English translation">
+      <span class="en-label">English</span><span class="track"><span class="knob"></span></span>
+    </button>
+    <button id="setBtn" class="icon-btn" aria-haspopup="dialog" aria-label="Display settings"><span class="aa"><span>A</span><span>a</span></span></button>
+  </div>
+</header>
+
+<main id="reader" tabindex="-1" aria-live="polite"></main>
+
+<nav class="pager" aria-label="Chapter navigation">
+  <button id="prevBtn" class="pg"><span class="pg-arrow"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="pg-text"><small>Previous</small><b id="prevLbl"></b></span></button>
+  <button id="nextBtn" class="pg next"><span class="pg-text"><small>Next</small><b id="nextLbl"></b></span><span class="pg-arrow"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+</nav>
+
+<div id="verseBar" class="verse-bar" hidden>
+  <span id="verseBarRef" class="vb-ref"></span>
+  <button id="vbCopy">Copy</button>
+  <button id="vbMark">Save</button>
+  <button id="vbClose" aria-label="Dismiss">✕</button>
+</div>
+
+<aside id="wordCard" class="word-card" aria-live="polite" hidden></aside>
+
+<div id="scrim" class="scrim" hidden></div>
+
+<!-- Navigation sheet -->
+<section id="navSheet" class="sheet nav-sheet" role="dialog" aria-modal="true" aria-label="Go to" hidden>
+  <div class="sheet-top">
+  <div class="sheet-head">
+    <div class="goto">
+      <input id="gotoInput" type="text" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Go to…  e.g. Ps 22:3, Sir 3, Isa 53" aria-label="Go to reference">
+      <button id="gotoBtn" aria-label="Go">Go</button>
+    </div>
+    <button id="navClose" class="icon-btn close" aria-label="Close">✕</button>
+  </div>
+  <div class="tabs" role="tablist">
+    <button role="tab" data-tab="books" aria-selected="true">Books</button>
+    <button role="tab" data-tab="search" aria-selected="false">Search</button>
+    <button role="tab" data-tab="saved" aria-selected="false">Saved</button>
+  </div>
+  </div>
+  <div class="sheet-body" id="navBody">
+    <div id="gotoSuggest" class="suggest" hidden></div>
+    <div id="tabBooks" class="tab-panel"></div>
+    <div id="tabSearch" class="tab-panel" hidden>
+      <div class="search-row">
+        <input id="searchInput" type="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Search Greek or English" aria-label="Search the text">
+        <button id="searchBtn">Search</button>
+      </div>
+      <p class="hint">Greek search ignores accents and breathings, so <i>λογος</i> finds <i>λόγος</i> and <i>λόγῳ</i>.</p>
+      <div id="lemmaPill" hidden></div>
+      <div id="searchStatus" class="status" role="status"></div>
+      <div id="searchResults" class="results"></div>
+    </div>
+    <div id="tabSaved" class="tab-panel" hidden></div>
+  </div>
+</section>
+
+<!-- Settings sheet -->
+<section id="setSheet" class="sheet set-sheet" role="dialog" aria-modal="true" aria-label="Display settings" hidden>
+  <div class="sheet-top"><div class="sheet-head">
+    <h2>Display</h2>
+    <button id="setClose" class="icon-btn close" aria-label="Close">✕</button>
+  </div></div>
+  <div class="sheet-body set-body">
+    <div class="row">
+      <label for="sizeRange">Text size</label>
+      <div class="size-ctl">
+        <button id="sizeDown" aria-label="Smaller">A−</button>
+        <input id="sizeRange" type="range" min="16" max="34" step="1">
+        <button id="sizeUp" aria-label="Larger">A+</button>
+      </div>
+    </div>
+    <div class="row">
+      <span class="row-label">Theme</span>
+      <div class="seg" id="themeSeg" role="radiogroup" aria-label="Theme">
+        <button role="radio" data-v="classic">Classic</button>
+        <button role="radio" data-v="auto">Auto</button>
+        <button role="radio" data-v="light">Parchment</button>
+        <button role="radio" data-v="dark">Candlelit</button>
+      </div>
+    </div>
+    <div class="row">
+      <span class="row-label">Word meanings</span>
+      <div class="seg" id="wordsSeg" role="radiogroup" aria-label="Tap words for meanings">
+        <button role="radio" data-v="on">Tap a word</button>
+        <button role="radio" data-v="off">Off</button>
+      </div>
+      <p class="hint">Tap any Greek word to see its dictionary form and meaning.</p>
+    </div>
+    <div class="row">
+      <span class="row-label">Greek text</span>
+      <div class="seg" id="layoutSeg" role="radiogroup" aria-label="Greek text layout">
+        <button role="radio" data-v="lines">Line per verse</button>
+        <button role="radio" data-v="flow">Flowing</button>
+      </div>
+      <p class="hint">Flowing text applies when English is off.</p>
+    </div>
+    <div class="row">
+      <span class="row-label">Offline library</span>
+      <div id="offlineStatus" class="offline">Checking…</div>
+      <button id="offlineBtn" class="wide btn-gold">Download everything</button>
+    </div>
+    <p class="about">Greek: Swete’s <i>Old Testament in Greek</i> (1909–1930), transcribed by P. Amicarelli and E. Wong, corrected by See The Bible (GPL‑3.0). English: L. C. L. Brenton’s <i>Septuagint</i> (1851), public domain. Word forms are matched to dictionary entries using lemma data from the Open Scriptures Septuagint Project (CC BY 4.0); meanings come from the STEPBible lexicons (CC BY 4.0), based on Abbott‑Smith and Liddell‑Scott‑Jones. The matching is automatic and was audited (see WORD-TAGGING-AUDIT.txt): about 99% of words are tagged, and in the samples checked nearly all were right, but an occasional word, especially a proper name, may be wrong or untagged. Full credits are in ATTRIBUTION.txt.</p>
+  </div>
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>

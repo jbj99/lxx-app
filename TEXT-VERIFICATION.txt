@@ -1,0 +1,27 @@
+GREEK TEXT VERIFICATION
+
+SHORT VERSION
+The Greek text was cross-checked word by word against a second, independent transcription of Swete. That found and fixed 115 typos, and left 22 spots for a person to check against the printed page. The text is not guaranteed to be 100% accurate, and some things could not be checked (listed below).
+
+WHAT WAS COMPARED
+Second transcription: the Open Greek and Latin project's First1KGreek edition of Swete, keyed in from the Internet Archive scans (CC BY-SA 4.0). It was used only for checking. The app's text is still the original transcription, with the corrections in corrections-log.csv.
+Coverage: 52 of the 54 books, about 556,600 of the 588,100 words. Not covered: Isaiah (the other transcription has a different manuscript's text there) and Ecclesiastes (no text available).
+Method: each chapter was compared word by word, ignoring accents, breathings and punctuation.
+
+WHAT WAS FOUND
+534,744 words (96.1%) match the other transcription letter for letter. Most of the remaining 3.9% turned out to be errors in the other transcription, not mine: stray Latin letters and digits inside Greek words (for example καρτερίn), spellings that occur nowhere else, dropped words, and verses merged together. That transcription is OCR that was only partly corrected, so it cannot be treated as a gold standard. For example, Genesis 49:4 is complete in my text, and the other one repeats a clause.
+Real typos were found in my text. They also existed in both of the original sources, which share one origin. Examples: πόρνμς for πόρνης (Ezekiel 16:30), ἐγέννσεν for ἐγέννησεν (1 Chronicles 2:17), Σαψψὼν for Σαμψών (Judges 16:28), Ἰσραὴγ for Ἰσραὴλ (Ezekiel 37:19), ἔοτιν for ἔστιν (1 Esdras 1:22).
+
+WHAT WAS CHANGED
+115 words were corrected. 95 met a strict rule (my spelling occurs nowhere else, the other text has a common real word one or two letters away). 20 were judged by hand to be evident non-words. Each change is in corrections-log.csv, with the Swete page number and a link to the scan.
+Borderline cases (genuine spelling variants, different wording, ν-movable, -αν/-ον endings, names) were NOT changed. The 22 left are in please-check-against-scan.csv.
+
+WHAT COULD NOT BE CHECKED
+  - Isaiah and Ecclesiastes (about 25,000 words) have no independent text here.
+  - Accents, breathings and punctuation were not compared. The two transcriptions follow different conventions, so differences were mostly noise.
+  - Typos that both transcriptions share, or that fall where the other one has dropped words, would not be caught.
+  - Sirach differs between the two texts in many places that look like genuine variant readings (it is a different recension), so Sirach was only partly checked.
+  - Swete's edition itself is a diplomatic text, not a critical one, and has its own readings.
+
+HOW TO GET CLOSER TO CERTAINTY
+Check please-check-against-scan.csv against the printed page (page numbers and scan link are given). Spot-check Isaiah, Ecclesiastes and any passage you rely on against a scan of Swete, volume 1 (Genesis-4 Kings), 2 (1 Chronicles-Sirach) or 3 (Hosea-4 Maccabees), on the Internet Archive.

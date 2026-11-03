@@ -1,0 +1,31 @@
+WORD-TAGGING AUDIT
+
+WHAT WAS CHECKED
+Every one of the 588,103 Greek words was assigned a dictionary entry automatically, then audited. There is no independent, human-verified tagging of Swete's text to compare against, so the audit combined automatic consistency checks with reading samples by hand.
+
+HOW THE WORDS WERE MATCHED
+1. The Open Scriptures lemma lists follow Rahlfs' edition, and some verses are numbered differently from Swete's. Each Swete verse was therefore first compared with its own lemma list, and with neighbouring verses where the numbering differs. The best-fitting list was chosen by how closely the spellings of the words resembled their assigned dictionary entries. 27,533 of 29,476 verses (93.4%) were matched to a list; 1,126 of those were matched to a neighbouring verse. The other 1,943 verses use dictionary-only tagging.
+2. A dictionary of spelling-to-entry pairings was built only from verses that matched cleanly, and only pairings that recur were trusted.
+3. Every matched verse was re-aligned word by word using that dictionary and spelling similarity. A word that could not be matched with confidence was left untagged instead of guessed.
+4. Corrections: personal-pronoun forms (μου, σοι, ἡμῖν and so on) were merged under ἐγώ, σύ, ἡμεῖς and ὑμεῖς, and plain αὐτός forms mislabelled as ἑαυτοῦ in the source data were corrected. Weaker matches were dropped when a capitalised word was matched to a lower-case entry or the reverse.
+
+RESULT
+  Tagged: 583,915 words (99.29%). Untagged: 4,188 words (0.71%).
+  Confidence tiers (share of all words): exact recurring pairing 89.4%; same spelling usually tagged with the same entry 5.2%; similar spelling 2.8%; confirmed by both neighbouring words 1.5%; dominant entry overriding a doubtful match 0.4%.
+  Of the tagged words, 99.4% have a short meaning and 97.8% a fuller definition.
+
+SAMPLES READ BY HAND (all after the final fixes unless stated)
+  100 random words from the whole text: none clearly wrong.
+  60 random content words (not the 25 most common): none clearly wrong.
+  30 words from the similar-spelling tier: none clearly wrong.
+  30 words from the neighbour-confirmed tier: 2 doubtful, both proper names with differing readings (one is now dropped by the capitalisation check).
+  40 words from verses with no matched lemma list: none wrong, 4 left untagged.
+  An earlier version of this audit found serious errors (about 12 in 30 sampled words in a middle tier, and several scrambled verses such as Isaiah 64:1, Exodus 22:7 and Jeremiah 9:16, caused by differing verse numbering). The matching was rebuilt and those verses now check out.
+
+WHAT THIS MEANS
+About 260 words were read and at most two were doubtful, so the true error rate among tagged words is probably around 1% or less. That is an estimate from samples, not a proof. Errors are most likely in:
+  - proper names, which Swete and Rahlfs spell differently;
+  - places where the two editions have different readings, so the lemma belongs to the other edition's word;
+  - spellings that could belong to two words (such as ἡ and ἦ) in the 1,943 verses with no matched lemma list, where the commoner reading is used;
+  - lemma forms, which follow Open Scriptures' conventions (for example a few odd forms for rare words).
+Full grammatical parsing (case, number, tense, mood) is not provided.
